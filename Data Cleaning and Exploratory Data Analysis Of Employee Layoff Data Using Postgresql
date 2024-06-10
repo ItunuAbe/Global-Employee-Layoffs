@@ -1,0 +1,280 @@
+--Employee Layoffs data analysis project using postgresql
+--https://www.kaggle.com/datasets/swaptr/layoffs-2022
+
+
+----1. Data Cleaning
+
+
+--preview the dataset; we have here 2362 records with 10 columns
+
+SELECT *
+FROM layoffs;
+
+
+--Create a staging table (layoffs_copy) to preserve the raw data.
+
+CREATE TABLE layoffs_copy
+AS SELECT *
+FROM layoffs;
+
+
+--a. Remove Duplicates
+
+
+--Identify duplicate entries using ROW_NUMBER() OVER() function.
+
+SELECT *,
+	ROW_NUMBER() OVER (
+	PARTITION BY company,location,industry,total_laid_off,percentage_laid_off,date,stage,country,funds_raised_millions) AS row_num
+	FROM layoffs_copy;
+
+
+WITH duplicate_cte AS (
+SELECT *,
+	ROW_NUMBER() OVER (
+	PARTITION BY company,location,industry,total_laid_off,percentage_laid_off,date,stage,country,funds_raised_millions) AS row_num
+	FROM layoffs_copy
+)
+SELECT *
+FROM duplicate_cte
+WHERE row_num > 1;
+
+
+
+--Delete where row number is > 1, first we need to create a new staging table, layoffs_copy2, and insert layoffs_copy data into it.
+
+CREATE TABLE layoffs_copy2
+(
+    company character varying(50) COLLATE pg_catalog."default",
+    location character varying(50) COLLATE pg_catalog."default",
+    industry character varying(50) COLLATE pg_catalog."default",
+    total_laid_off numeric,
+    percentage_laid_off numeric,
+    date date,
+    stage character varying(50) COLLATE pg_catalog."default",
+    country character varying(50) COLLATE pg_catalog."default",
+    funds_raised_millions numeric,
+	row_num numeric
+	
+);
+
+INSERT INTO layoffs_copy2
+SELECT *,
+	ROW_NUMBER() OVER (
+	PARTITION BY company,location,industry,total_laid_off,percentage_laid_off,date,stage,country,funds_raised_millions) AS row_num
+	FROM layoffs_copy;
+
+SELECT *
+FROM layoffs_copy2
+WHERE row_num > 1;
+
+DELETE
+FROM layoffs_copy2
+WHERE row_num > 1;
+
+
+
+
+--b. Standardize data 
+
+
+--fix the whitespaces on the 'company' column and update the table
+
+SELECT *
+FROM layoffs_copy2;
+
+SELECT company, TRIM(company)
+FROM layoffs_copy2;
+
+UPDATE layoffs_copy2
+SET company = TRIM(company);
+
+
+--standardize the 'industry' column by updating inconsistent entries: "Crypto Currency" to "Crypto"
+
+SELECT *
+FROM layoffs_copy2
+WHERE industry LIKE 'Cry%';
+
+UPDATE layoffs_copy2
+SET industry = 'Crypto'
+WHERE industry LIKE 'Cry%';
+
+
+--Standardized and update the 'country' column by removing trailing "fullstops": "United States." to "United States"
+
+SELECT DISTINCT country,TRIM(TRAILING '.' FROM country)
+FROM layoffs_copy2
+ORDER BY 1;
+
+
+UPDATE layoffs_copy2
+SET country = TRIM(TRAILING '.' FROM country);
+
+
+--c. Handle Null values, update similar records with missing values and remove any rows not useful for the analysis
+
+ 
+SELECT *
+FROM layoffs_copy2
+WHERE industry IS NULL
+OR industry = '';
+
+
+SELECT *
+FROM layoffs_copy2
+WHERE company LIKE 'Bally%';
+
+UPDATE layoffs_copy2
+SET industry = 'Consumer'
+WHERE company = 'Juul'
+AND total_laid_off = 400;
+
+
+SELECT *
+FROM layoffs_copy2
+WHERE total_laid_off IS NULL
+AND percentage_laid_off IS NULL;
+
+DELETE 
+FROM layoffs_copy2
+WHERE total_laid_off IS NULL
+AND percentage_laid_off IS NULL;
+
+ALTER TABLE layoffs_copy2
+DROP COLUMN row_num;
+
+
+----2. Exploratory Data Analysis (EDA)
+--this is the phase where you explore the data and find trends, patterns or outliers to derive insights
+
+
+SELECT *
+FROM layoffs_copy2;
+
+--a. Companies with 100% laid off, signifying company closure
+
+select * 
+from layoffs_copy2
+where percentage_laid_off = 1 
+and total_laid_off is not null
+order by total_laid_off desc;
+
+--a1. drilling down to Nigeria....the result shows that no company closed down in Nigeria during this period 👌
+
+select * 
+from layoffs_copy2
+where percentage_laid_off = 1 
+and total_laid_off is not null
+and country = 'Nigeria'
+order by total_laid_off desc;
+
+
+--b. Companies with the biggest single Layoff in a single day
+
+select company, total_laid_off
+from layoffs_copy2
+where total_laid_off is not null
+order by 2 desc
+limit 10;
+
+--b1. drilling down to Nigeria...jumia is at the top of the list with 900 total laid off in a single day.
+
+select company, total_laid_off
+from layoffs_copy2
+where total_laid_off is not null
+and country = 'Nigeria'
+order by 2 desc
+limit 10;
+
+
+--c. Companies overall total Layoffs......Amazon is at the top with 18150
+
+select company,sum(total_laid_off) as total_laid_off
+from layoffs_copy2
+where total_laid_off is not null
+group by 1
+order by 2 desc;
+
+--c1. drilling down to Nigeria...still jumia
+
+select company,sum(total_laid_off) as total_laid_off
+from layoffs_copy2
+where total_laid_off is not null
+and country = 'Nigeria'
+group by 1
+order by 2 desc;
+
+
+-- d.Geographical Distribution of layoffs 
+
+select location ,sum(total_laid_off) as total_laid_off
+from layoffs_copy2
+where total_laid_off is not null
+group by 1
+order by 2 desc;
+
+
+--d1. drilling down to Nigeria...we have lagos with 1482 and Ibadan with 400 total laid off
+
+select location ,sum(total_laid_off) as total_laid_off
+from layoffs_copy2
+where total_laid_off is not null
+and country = 'Nigeria'
+group by 1
+order by 2 desc;
+
+
+--e. most impacted industry
+
+select industry, sum(total_laid_off) as total_laid_off
+from layoffs_copy2
+where total_laid_off is not null 
+group by 1
+order by 2 desc
+limit 10;
+
+--f. most impacted country
+
+select country,sum(total_laid_off) as total_laid_off
+from layoffs_copy2
+where total_laid_off is not null
+group by 1
+order by 2 desc
+limit 10;
+
+
+--Format the date column to further analyze the data. 
+
+alter table layoffs_copy2
+add column formatted_date varchar(20);
+
+update layoffs_copy2
+set formatted_date = to_char(date,'DD-Mon-YYYY');
+	
+select *
+from layoffs_copy2
+
+--g. total laidoff by year and month
+
+select substring(formatted_date,4,8) as layoff_date,sum(total_laid_off) as total_laid_off
+from layoffs_copy2
+where total_laid_off is not null and date is not null
+group by 1
+order by 2 desc;
+
+--h. Rolling total of laidoffs, showing month by month progression 
+
+with rolling_total_cte as
+(
+select extract (year from date) as layoff_year,extract (month from date) as layoff_month ,sum(total_laid_off) as total_laid_off
+from layoffs_copy2
+where total_laid_off is not null and date is not null
+group by 1,2
+order by 3 desc
+)
+select layoff_year,layoff_month,total_laid_off,sum(total_laid_off) over(order by layoff_year,layoff_month ) as rolling_total_laidoff
+from rolling_total_cte;
+
+
+
