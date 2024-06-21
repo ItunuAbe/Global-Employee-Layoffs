@@ -77,8 +77,8 @@ Jumia came first with 900 layoffs in a day.
 
 •	Geographical Distribution of layoffs
 
-![Screenshot (87)](https://github.com/ItunuAbe/Global-Employee-
-Layoffs/assets/110028869/778b04d5-7563-4231-98fd-b1ac1b4b7cc1)
+![Screenshot (87)](https://github.com/ItunuAbe/Global-Employee-Layoffs/assets/110028869/710b0901-a8cc-4642-9683-0af94997c91c)
+
 SF Bay Area, Seattle and New York City all in United States experienced the highest number of layoff
 
 
