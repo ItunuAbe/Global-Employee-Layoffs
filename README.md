@@ -49,6 +49,8 @@ No company in Nigeria experienced total closure
 
 
 
+
+
 •	Companies with the biggest single Layoff in a day, and then drilled down by Country to Nigeria.
 
 ![Screenshot (83)](https://github.com/ItunuAbe/Global-Employee-Layoffs/assets/110028869/0e473106-4df2-426a-a6aa-c7ba9a4339ca)
@@ -60,12 +62,16 @@ Jumia came first with 900 layoffs in a day.
 
 
 
+
+
 •	Companies' overall total Layoffs.
 
 ![Screenshot (85)](https://github.com/ItunuAbe/Global-Employee-Layoffs/assets/110028869/ae0aee9e-4aba-4f1b-91a2-9e038af816bf)
 
 
 ![Screenshot (86)](https://github.com/ItunuAbe/Global-Employee-Layoffs/assets/110028869/8db40068-36ef-4704-bde5-801502c7d83b)
+
+
 
 
 
@@ -81,19 +87,27 @@ In Nigeria , we have 1482 layoffs in Lagos and 400 layoffs in Ibadan.
 
 
 
+
+
 •	Most impacted industry
 
 ![Screenshot (89)](https://github.com/ItunuAbe/Global-Employee-Layoffs/assets/110028869/c7b4561b-37a6-437f-ae64-6287679e14d8)
 Consumer, Retail and Transportation sectors  experienced the highest volume of layoffs
 
 
+
+
 •	Most impacted country
 ![Screenshot (90)](https://github.com/ItunuAbe/Global-Employee-Layoffs/assets/110028869/23a730ec-44c7-4d34-83b6-07c84139ab84)
 United States has the highest figure, follow by India 
 
+
+
 •	Total laid off by year and month
 ![Screenshot (91)](https://github.com/ItunuAbe/Global-Employee-Layoffs/assets/110028869/0592cfad-89e5-4b2d-b7f1-593afe0fee94)
 In January 2023 84714 layoffs occur worldwide.
+
+
 
 •	Rolling total of laid-offs, showing month-by-month progression
  ![Screenshot (92)](https://github.com/ItunuAbe/Global-Employee-Layoffs/assets/110028869/4ae0a864-ee26-4235-b7ca-8ab71e87f9d3)
