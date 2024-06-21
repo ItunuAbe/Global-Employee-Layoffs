@@ -105,7 +105,7 @@ United States has the highest figure, follow by India
 
 •	Total laid off by year and month
 ![Screenshot (91)](https://github.com/ItunuAbe/Global-Employee-Layoffs/assets/110028869/0592cfad-89e5-4b2d-b7f1-593afe0fee94)
-In January 2023 84714 layoffs occur worldwide.
+In January 2023, 84714 layoffs occur worldwide.
 
 
 
