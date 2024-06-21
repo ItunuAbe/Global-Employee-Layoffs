@@ -1,9 +1,9 @@
 # Global Employee Layoffs
 
 ## Repository Contents
-Postgresql Notebook containing the code and step-by-step EDA process
+This Notebook contains the PostgreSQL code and step-by-step of the exploratory analysis.
 
-README : This document summarizes the Data Wrangling Process, analysis observation, and insights.
+README.md : This document summarizes the Data Wrangling Process, analysis observation, and insights.
 
 Dashboard: This visualizes the data, revealing patterns and trends interactively. 
 
