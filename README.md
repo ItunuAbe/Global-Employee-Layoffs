@@ -6,6 +6,7 @@ Postgresql Notebook containing the code and step-by-step EDA process
 README : This document summarizes the Data Wrangling Process, analysis observation, and insights.
 
 Dashboard: This visualizes the data, revealing patterns and trends interactively. 
+
 https://public.tableau.com/views/2020-2023Companylayoffs/Dashboard?:language=en-US&:sid=&:display_count=n&:origin=viz_share_link
 
 ## Project Objective
@@ -34,13 +35,18 @@ The dataset used is data from Kaggle. It includes information on the Company nam
 
 In the phase I explored to understand the patterns and trends within the dataset to derive meaningful insights, I focused on various aspects such as:
 
+
+
 •	Companies with 100% laid off, signifying closure. Drilled down by Country to analyze if any company experienced total closure in Nigeria.
 
 ![Screenshot (81)](https://github.com/ItunuAbe/Global-Employee-Layoffs/assets/110028869/d658d24d-49de-4beb-83a8-33066e60a51c)
 We have four companies in United States and more others, majorly in Food Industry.
 
+
 ![Screenshot (82)](https://github.com/ItunuAbe/Global-Employee-Layoffs/assets/110028869/2da02451-c80e-46d9-9ba3-ff894e2eba99)
 No company in Nigeria experienced total closure
+
+
 
 
 •	Companies with the biggest single Layoff in a day, and then drilled down by Country to Nigeria.
@@ -48,8 +54,11 @@ No company in Nigeria experienced total closure
 ![Screenshot (83)](https://github.com/ItunuAbe/Global-Employee-Layoffs/assets/110028869/0e473106-4df2-426a-a6aa-c7ba9a4339ca)
 Google, Meta, Microsoft and Amazon topping the charts.
 
+
 ![Screenshot (84)](https://github.com/ItunuAbe/Global-Employee-Layoffs/assets/110028869/f875927c-2578-4458-a9ef-6dccc9683f91)
 Jumia came first with 900 layoffs in a day.
+
+
 
 •	Companies' overall total Layoffs.
 
@@ -57,6 +66,8 @@ Jumia came first with 900 layoffs in a day.
 
 
 ![Screenshot (86)](https://github.com/ItunuAbe/Global-Employee-Layoffs/assets/110028869/8db40068-36ef-4704-bde5-801502c7d83b)
+
+
 
 •	Geographical Distribution of layoffs
 
@@ -67,6 +78,8 @@ SF Bay Area, Seattle and New York City all in United States experienced the high
 
 ![Screenshot (88)](https://github.com/ItunuAbe/Global-Employee-Layoffs/assets/110028869/9badc69c-9406-487f-bc1c-735e9f3037b0)
 In Nigeria , we have 1482 layoffs in Lagos and 400 layoffs in Ibadan.
+
+
 
 •	Most impacted industry
 
