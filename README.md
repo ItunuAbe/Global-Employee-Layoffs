@@ -1,19 +1,19 @@
 # Global Employee Layoffs
 
 ## Repository Contents
-This Notebook contains the PostgreSQL code and step-by-step of the exploratory analysis.
+This notebook contains the PostgreSQL code and step-by-step of my exploratory analysis.
 
-README.md : This document summarizes the Data Wrangling Process, analysis observation, and insights.
+README.md : This document summarizes the data wrangling process, analysis observation, and insights.
 
-Dashboard: This visualizes the data, revealing patterns and trends interactively. 
-
+## Tableau Dashboard Link
+This visualizes the data, revealing patterns and trends interactively. 
 https://public.tableau.com/views/2020-2023Companylayoffs/Dashboard?:language=en-US&:sid=&:display_count=n&:origin=viz_share_link
 
 ## Project Objective
-This project aims to analyze layoffs experienced between 2020 and 2023 at the company, industry, country, and Period (Date) levels, to uncover patterns, reveal the most impacted industry, and provide insight. The exploratory analysis is done using PostgreSQL and it is visualized using Tableau.
+This project aims to analyze layoffs experienced between 2020 and 2023 at the company, industry, country, and period (Date) levels, to uncover patterns, reveal the most impacted industry, and provide insight. The exploratory analysis is done using PostgreSQL and it is visualized using Tableau.
 
 ## Data Overview
-The dataset used is data from Kaggle. It includes information on the Company name, Location (City), Industry, Total laid off, Percentage laid off, date, Company Stage, Country, and Funds raised.
+The dataset used is from Kaggle. It includes information on the Company name, Location (City), Industry, Total laid off, Percentage laid off, date, Company Stage, Country, and Funds raised.
 
 ## Data Wrangling(cleaning) Process:
 
