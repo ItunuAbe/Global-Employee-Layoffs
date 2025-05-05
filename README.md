@@ -1,12 +1,16 @@
 # Global Employee Layoffs
 
+## About
+In this project I analyze total laid off carried out by companies between year 2020 and 2023 using SQL tools. The dataset contains information on company layoffs, including company name, location, industry, total laid off, percentage laid off, date, stage, country, and funds raised.
+
 ## Repository Contents
-This notebook contains the PostgreSQL code and step-by-step of my exploratory analysis.
+This notebook contains the PostgreSQL code and step-by-step of my exploratory analysis. 
 
 README.md : This document summarizes the data wrangling process, analysis observation, and insights.
 
 ## Tableau Dashboard Link
 This visualizes the data, revealing patterns and trends interactively. 
+
 https://public.tableau.com/views/2020-2023Companylayoffs/Dashboard?:language=en-US&:sid=&:display_count=n&:origin=viz_share_link
 
 ## Project Objective
@@ -17,7 +21,7 @@ The dataset used is from Kaggle. It includes information on the Company name, Lo
 
 ## Data Wrangling(cleaning) Process:
 
-•	The dataset was downloaded in Excel format and cleaned using PostgreSQL. The Steps are:
+The dataset was downloaded in Excel format and cleaned using PostgreSQL. The Steps are:
 
 •	Created a staging table layoffs_copy, to preserve the raw data.
 
